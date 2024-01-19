@@ -9,6 +9,7 @@ import {
 import Book from "../type/Book";
 import BooksTable from "./BooksTable";
 import Add from "./Add";
+import Edit from "./Edit";
 
 // App コンポーネント
 const App = () => {
@@ -32,8 +33,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<BooksTable books={books} />} />
         <Route path="/add" element={<Add />} />
-        <Route path="/edit" element={<h2>Contact Page</h2>} />
-        <Route path="/detail" element={<h2>Contact Page</h2>} />
+        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/detail/:id" element={<h2>Contact Page</h2>} />
       </Routes>
     </Router>
   );

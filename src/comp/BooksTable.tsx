@@ -10,12 +10,12 @@ const BooksTable = ({ books }: { books: Book[] }) => {
     navigate(`/add`);
   };
 
-  const editNavigate = () => {
-    navigate(`/edit`);
+  const editNavigate = (id: string) => {
+    navigate(`/edit/${id}`);
   };
-  const detailNavigate = () => {
-    navigate(`/detail`);
-  };
+  // const detailNavigate = () => {
+  //   navigate(`/detail/${id}`);
+  // };
 
   return (
     <div>
@@ -31,8 +31,10 @@ const BooksTable = ({ books }: { books: Book[] }) => {
             <tr key={book.id}>
               <td>{book.タイトル}</td>
               <td>{book.著者}</td>
-              <button onClick={editNavigate}>編集</button>
-              <button onClick={detailNavigate}>詳細</button>
+              <td>
+                <button onClick={() => editNavigate(book.id)}>編集</button>
+              </td>
+              {/* <td><button onClick={() => detailNavigate(book.id)}>詳細</button></td> */}
             </tr>
           ))}
         </tbody>
