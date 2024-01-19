@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Book from "../type/Book";
 import axios from "axios";
-import AddProps from "../type/AddProps";
+import FetchProps from "../type/FetchProps";
 
-const Detail: React.FC<AddProps> = ({ fetchBooks }) => {
+const Detail: React.FC<FetchProps> = ({ fetchBooks }) => {
   let { id } = useParams<{ id: string }>();
   let navigate = useNavigate();
   const [book, setBook] = useState<Book | null>(null);

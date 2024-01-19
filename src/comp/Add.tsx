@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AddProps from "../type/AddProps";
+import FetchProps from "../type/FetchProps";
 
-const Add: React.FC<AddProps> = ({ fetchBooks }) => {
+const Add: React.FC<FetchProps> = ({ fetchBooks }) => {
   const [newBook, setNewBook] = useState({
     タイトル: "",
     著者: "",

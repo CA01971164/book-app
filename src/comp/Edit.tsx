@@ -3,12 +3,9 @@ import Book from "../type/Book";
 import axios from "axios";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import FetchProps from "../type/FetchProps";
 
-interface EditProps {
-  setUpdTriger: (value: number | ((prevValue: number) => number)) => void;
-}
-
-const Edit: React.FC<EditProps> = ({ setUpdTriger }) => {
+const Edit: React.FC<FetchProps> = ({ fetchBooks }) => {
   // 入力のフィールドが変わるたびに呼び出させれる関数
 
   const [updBook, setUpdBook] = useState({
@@ -30,7 +27,7 @@ const Edit: React.FC<EditProps> = ({ setUpdTriger }) => {
     e.preventDefault();
     try {
       await axios.patch(`http://localhost:3001/books/${id}`, updBook);
-      setUpdTriger((old: number) => old + 1); // トリガーを更新
+      fetchBooks();
       navigate(`/`);
     } catch (error) {
       console.error(error);
