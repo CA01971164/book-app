@@ -10,6 +10,7 @@ const Add = () => {
   });
   let navigate = useNavigate();
 
+  // 入力のフィールドが変わるたびに呼び出させれる関数
   const handleChange = (e: any) => {
     setNewBook({ ...newBook, [e.target.id]: e.target.value });
   };
