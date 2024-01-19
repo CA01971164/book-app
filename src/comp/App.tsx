@@ -34,12 +34,15 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<BooksTable books={books} />} />
-        <Route path="/add" element={<Add />} />
+        <Route path="/add" element={<Add fetchBooks={fetchBooks} />} />
         <Route
           path="/edit/:id"
           element={<Edit setUpdTriger={setUpdTriger} />}
         />
-        <Route path="/detail/:id" element={<Detail  />} />
+        <Route
+          path="/detail/:id"
+          element={<Detail fetchBooks={fetchBooks} />}
+        />
       </Routes>
     </Router>
   );

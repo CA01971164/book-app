@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const Add = () => {
+import AddProps from "../type/AddProps";
+
+const Add: React.FC<AddProps> = ({ fetchBooks }) => {
   const [newBook, setNewBook] = useState({
     タイトル: "",
     著者: "",
@@ -19,7 +21,9 @@ const Add = () => {
     e.preventDefault();
     try {
       await axios.post(`http://localhost:3001/books`, newBook);
+      await fetchBooks(); // データを再フェッチ
       navigate(`/`);
+      console.log("通過しましたよ");
     } catch (error) {
       console.error(error);
     }
