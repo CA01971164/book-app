@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Book from "../type/Book";
 import BooksTable from "./BooksTable";
+import Add from "./Add";
 
 // App コンポーネント
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<BooksTable books={books} />} />
-        <Route path="/add" element={<h2>Contact Page</h2>} />
+        <Route path="/add" element={<Add />} />
         <Route path="/edit" element={<h2>Contact Page</h2>} />
         <Route path="/detail" element={<h2>Contact Page</h2>} />
       </Routes>
