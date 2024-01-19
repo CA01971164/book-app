@@ -10,6 +10,7 @@ import Book from "../type/Book";
 import BooksTable from "./BooksTable";
 import Add from "./Add";
 import Edit from "./Edit";
+import Detail from "./Detail";
 
 // App コンポーネント
 const App = () => {
@@ -38,7 +39,7 @@ const App = () => {
           path="/edit/:id"
           element={<Edit setUpdTriger={setUpdTriger} />}
         />
-        <Route path="/detail/:id" element={<h2>Contact Page</h2>} />
+        <Route path="/detail/:id" element={<Detail  />} />
       </Routes>
     </Router>
   );

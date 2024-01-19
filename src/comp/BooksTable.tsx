@@ -13,9 +13,9 @@ const BooksTable = ({ books }: { books: Book[] }) => {
   const editNavigate = (id: string) => {
     navigate(`/edit/${id}`);
   };
-  // const detailNavigate = () => {
-  //   navigate(`/detail/${id}`);
-  // };
+  const detailNavigate = (id: string) => {
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <div>
@@ -34,7 +34,9 @@ const BooksTable = ({ books }: { books: Book[] }) => {
               <td>
                 <button onClick={() => editNavigate(book.id)}>編集</button>
               </td>
-              {/* <td><button onClick={() => detailNavigate(book.id)}>詳細</button></td> */}
+              <td>
+                <button onClick={() => detailNavigate(book.id)}>詳細</button>
+              </td>
             </tr>
           ))}
         </tbody>
