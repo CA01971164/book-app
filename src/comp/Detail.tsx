@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Book from "../type/Book";
 import axios from "axios";
+import AddProps from "../type/AddProps";
 
-const Detail = () => {
+const Detail: React.FC<AddProps> = ({ fetchBooks }) => {
   let { id } = useParams<{ id: string }>();
   let navigate = useNavigate();
   const [book, setBook] = useState<Book | null>(null);
@@ -22,8 +23,8 @@ const Detail = () => {
 
   const delBook = async () => {
     try {
-      const response = await axios.delete(`http://localhost:3001/books/${id}`);
-      console.log(response.data);
+      await axios.delete(`http://localhost:3001/books/${id}`);
+      await fetchBooks();
       navigate("/");
     } catch (error) {
       console.error("削除中にエラーが発生した", error);
