@@ -19,6 +19,17 @@ const Detail = () => {
 
     fetchBook();
   }, [id]);
+
+  const delBook = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:3001/books/${id}`);
+      console.log(response.data);
+      navigate("/");
+    } catch (error) {
+      console.error("削除中にエラーが発生した", error);
+    }
+  };
+
   const backNavigate = () => {
     navigate("/");
   };
@@ -43,7 +54,8 @@ const Detail = () => {
         <strong>出版年:</strong> {book.出版年}
       </div>
       <div>
-        <button>この項目を削除する</button>
+        {" "}
+        <button onClick={delBook}>この項目を削除する</button>{" "}
       </div>
       <div>
         <button onClick={backNavigate}>戻る</button>
