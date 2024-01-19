@@ -1,6 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 
+// Book インターフェース
 interface Book {
   ID: number;
   タイトル: string;
@@ -9,24 +16,14 @@ interface Book {
   出版年: number;
 }
 
-function App() {
-  // jsonデータを格納する
-  const [books, setBooks] = useState<Book[]>([]);
+// BooksTable コンポーネント
+const BooksTable = ({ books }: { books: Book[] }) => {
+  // useNavigateは、トップレベルで宣言する必要がある。
+  let navigate = useNavigate();
 
-  // jsonデータを取得する関数の定義
-  const fetchBooks = async () => {
-    try {
-      const response = axios.get(`http://localhost:3001/books`);
-      setBooks((await response).data);
-    } catch (error) {
-      console.error("データの取得中にエラーが発生しましたい", error);
-    }
+  const handleNavigate = () => {
+    navigate(`/about`);
   };
-
-  // コンポーネントがマウントされたときにjsonデータを取得する
-  useEffect(() => {
-    fetchBooks();
-  }, []);
 
   return (
     <div>
@@ -38,19 +35,47 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {books.map((books) => (
-            <tr key={books.ID}>
-              <th>{books.タイトル}</th>
-              <th>{books.著者}</th>
+          {books.map((book) => (
+            <tr key={book.ID}>
+              <td>{book.タイトル}</td>
+              <td>{book.著者}</td>
               <button>編集</button>
               <button>詳細</button>
             </tr>
           ))}
         </tbody>
       </table>
-      <button>追加</button>
+      <button onClick={handleNavigate}>追加</button>
     </div>
   );
-}
+};
+
+// App コンポーネント
+const App = () => {
+  const [books, setBooks] = useState<Book[]>([]);
+
+  const fetchBooks = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/books`);
+      setBooks(response.data);
+    } catch (error) {
+      console.error("データの取得中にエラーが発生しました", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<BooksTable books={books} />} />
+        <Route path="/add" element={<h2>About Page</h2>} />
+        <Route path="/" element={<h2>Contact Page</h2>} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;
