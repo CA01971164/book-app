@@ -22,7 +22,7 @@ const BooksTable = ({ books }: { books: Book[] }) => {
   let navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate(`/about`);
+    navigate(`/add`);
   };
 
   return (
