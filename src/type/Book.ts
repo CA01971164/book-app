@@ -1,6 +1,6 @@
 // Book インターフェース
 export default interface Book {
-  ID: number;
+  id: number;
   タイトル: string;
   著者: string;
   出版社: string;

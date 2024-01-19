@@ -28,7 +28,7 @@ const BooksTable = ({ books }: { books: Book[] }) => {
         </thead>
         <tbody>
           {books.map((book) => (
-            <tr key={book.ID}>
+            <tr key={book.id}>
               <td>{book.タイトル}</td>
               <td>{book.著者}</td>
               <button onClick={editNavigate}>編集</button>
