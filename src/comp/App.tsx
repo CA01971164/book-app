@@ -14,6 +14,7 @@ import Edit from "./Edit";
 // App コンポーネント
 const App = () => {
   const [books, setBooks] = useState<Book[]>([]);
+  const [updTriger, setUpdTriger] = useState(0);
 
   const fetchBooks = async () => {
     try {
@@ -26,14 +27,17 @@ const App = () => {
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [updTriger]);
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<BooksTable books={books} />} />
         <Route path="/add" element={<Add />} />
-        <Route path="/edit/:id" element={<Edit />} />
+        <Route
+          path="/edit/:id"
+          element={<Edit setUpdTriger={setUpdTriger} />}
+        />
         <Route path="/detail/:id" element={<h2>Contact Page</h2>} />
       </Routes>
     </Router>

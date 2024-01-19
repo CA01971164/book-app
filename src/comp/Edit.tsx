@@ -4,7 +4,11 @@ import axios from "axios";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const Edit = () => {
+interface EditProps {
+  setUpdTriger: (value: number | ((prevValue: number) => number)) => void;
+}
+
+const Edit: React.FC<EditProps> = ({ setUpdTriger }) => {
   // 入力のフィールドが変わるたびに呼び出させれる関数
 
   const [updBook, setUpdBook] = useState({
@@ -26,6 +30,7 @@ const Edit = () => {
     e.preventDefault();
     try {
       await axios.patch(`http://localhost:3001/books/${id}`, updBook);
+      setUpdTriger((old: number) => old + 1); // トリガーを更新
       navigate(`/`);
     } catch (error) {
       console.error(error);
