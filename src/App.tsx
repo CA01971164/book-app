@@ -21,8 +21,15 @@ const BooksTable = ({ books }: { books: Book[] }) => {
   // useNavigateは、トップレベルで宣言する必要がある。
   let navigate = useNavigate();
 
-  const handleNavigate = () => {
+  const addNavigate = () => {
     navigate(`/add`);
+  };
+
+  const editNavigate = () => {
+    navigate(`/edit`);
+  };
+  const detailNavigate = () => {
+    navigate(`/detail`);
   };
 
   return (
@@ -39,13 +46,13 @@ const BooksTable = ({ books }: { books: Book[] }) => {
             <tr key={book.ID}>
               <td>{book.タイトル}</td>
               <td>{book.著者}</td>
-              <button>編集</button>
-              <button>詳細</button>
+              <button onClick={editNavigate}>編集</button>
+              <button onClick={detailNavigate}>詳細</button>
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={handleNavigate}>追加</button>
+      <button onClick={addNavigate}>追加</button>
     </div>
   );
 };
@@ -72,7 +79,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<BooksTable books={books} />} />
         <Route path="/add" element={<h2>About Page</h2>} />
-        <Route path="/" element={<h2>Contact Page</h2>} />
+        <Route path="/edit" element={<h2>Contact Page</h2>} />
+        <Route path="/detail" element={<h2>Contact Page</h2>} />
       </Routes>
     </Router>
   );
